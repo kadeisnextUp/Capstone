@@ -1,0 +1,20 @@
+# env and secret files
+*.env
+
+
+# AI tools
+CLAUDE.md
+*.claude/
+*.superpowers/
+*.impeccable/
+PRODUCT.md
+AGENTS.md
+DESIGN.md
+
+
+# app store credentials
+credentials.json
+
+#
+
+
