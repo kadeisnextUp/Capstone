@@ -1,7 +1,7 @@
 # User Stories and use cases
 **Team members:** Laila Raines, Kaden Sawyer
 
-
+## User Storeis
 US-01: Importing semester schedule 
     As a student, I want to import my schedule from a file so I don't have to manully input them.
     
@@ -55,4 +55,14 @@ US-06: Knowledge of what's going on on campus
     events that do conflict and show which course)
     - Given I have an interest in a event, when I view the event, I have the option to select interest in the event so I can stay updated.
 
-US-07: 
+## Use cases
+
+UC-01: Reduce travel time between classes.
+
+UC-02: Acknowlegde walking routes to classes.
+
+UC-03: Suggestions on what to do between classes.
+
+UC-04: Knowledge of class locations
+
+UC-05:  
