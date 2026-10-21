@@ -3,11 +3,13 @@
 
 ## Stakeholder Map
 - Primary: First year/transfer student
-    - Needs: To access and upload scheduling and features with minimal friction 
+    - Needs: To access and upload scheduling and features with minimal friction, and to get between classes on time on a campus they are not familiar with
 - Secondary: Head of student club/org
     - Needs: Able to post and cancel events and reach students who are interested
 - Hidden: Student that requires assistive tech to navigate media
     - Needs: Be able to read/listen to their schedule and campus events with accessibility tools built into the app
+- Hidden: University student-records privacy office (FERPA compliance)
+    - Needs: Schedule data is only stored with the student's consent, kept to the minimum needed, and fully deleted when the student removes it
 
 ## User Stories
 - US-01: Importing schedule
@@ -18,27 +20,27 @@
     - Description: As a first year/transfer student, I want to see campus events that don't conflict with my class schedule, so that I can participate in events that interest me and meet new people.
 - US-03: Increase awareness of campus events
     - Stakeholder: Student club/org (Secondary)
-    - Description: As the head of a student club, I want to post and cancel my club's events, so that interested students know about changes within a minute.
+    - Description: As the head of a student club, I want to post and cancel my club's events, so that interested students hear about changes within a minute without me having to message each of them myself.
 - US-04: App's assistive technology
     - Stakeholder: Student who requires assistive tech (Hidden)
-    - Description: As a student who uses assistive tech, I want to be able to read my schedule and event information with the tools I already use, so that I can find my classes and events on my own
-- US-05: Professor Ratings
+    - Description: As a student who uses a screen reader, I want every part of my schedule and event information to be read out completely and in order, so that I can find my classes and events on my own
+- US-05: Walking time between classes
     - Stakeholder: First year/transfer student (Primary)
-    - Description: As a first year/transfer student, I want to see how other students rate my professors, so that I know what to expect from my courses and can choose them accordingly.
+    - Description: As a first year/transfer student who doesn't know campus yet, I want to know how long it takes to walk between my back-to-back classes, so that I arrive on time to each one.
 
 ## Use Cases
 - UC-01: Importing Schedule (Expands US-01)
     - Primary actor: The student importing their courses
-    - Secondary actors: College course and building info/data
+    - Secondary actors: Campus building directory (used to match and suggest building names)
     - Preconditions to verify: 
         - Student is signed in and on the schedule screen
         - Student has given consent to store their schedule data
-        - Schedule file is 10MB or smaller and is a PDF 
+        - Student has their schedule file saved on their device
     - Main Success Flow:
         1. Student chooses to import schedule
             - System response: Shows the files on their device that can be selected
         2. Student selects the schedule file
-            - System response: Checks the file, pulls course and course info, shows the courses for review. Course info that couldn't be pulled will be highlighted 
+            - System response: Checks that the file is a PDF of 10MB or less, pulls course and course info, shows the courses for review. Course info that couldn't be pulled will be highlighted 
         3. Student reviews the courses and confirms them
             - System response: Saves the courses, shows a notification saying that the schedule has been accepted, and shows their filled in schedule
     - Alternate Flows:
@@ -46,60 +48,60 @@
             - System response: Updates the course and removes any highlighted incomplete areas as the student fills in information
         2. Student wants to cancel schedule upon review
             - System response: Deletes pulled courses and navigates back to the schedule screen
-        3. Student schedule has already been saved and wants to update information
-            - System response: Allows student to edit fields and add new courses, and saves changes
-        4. Student wants to remove courses
-            - System response: deletes the courses, saves changes, and shows updated schedule
     - Exception Flows:
-        1. Students course info cannot be pulled and is asked to manually enter information
-            - System response: navigates to the manual entry section, provides autofill suggestions, and allows student to save changes
+        1. No course info can be pulled from the selected file
+            - System response: Tells the student no courses were found, saves 0 courses, and offers manual entry
+            - Student enters a course manually
+            - System response: Provides building name autofill suggestions and allows student to save changes
         2. Student tries to upload a file that isn't a PDF or is larger than 10MB
-            - System response: rejects file and tells student to upload a PDF that is 10MB or less
+            - System response: Rejects file and tells student to upload a PDF that is 10MB or less
     - Postcondition: Every course the student confirmed or entered is saved in their schedule. Courses cancelled during review are not saved and do not show up on course schedule
     - Given/When/Then:
         - Main Flow:
             - (AC-01.1)
                 - Given: A signed in student that has consented to their schedule being used and has a PDF that is 10MB or less with 5 courses
                 - When: The student selects the file
-                - Then: withing 10 seconds shows all 5 courses and the information (name, professor, building, room, and time) matching the file
+                - Then: Within 10 seconds shows all 5 courses and the information (name, professor, building, room, and time) matching the file
             - (AC-01.2)
                 - Given: When reviewing, there are 5 courses shown
                 - When: The student confirms
                 - Then: A successful notification shows and their schedule shows the 5 courses and the information within 5 seconds
         - Alternate Flow:
             - (AC-01.3)
-                - Given: The student has one saved course
-                - When: The student edits the course, deletes it, and saves changes
-                - Then: The course is removed from their schedule and shows no courses
+                - Given: When reviewing, there are 5 courses shown
+                - When: The student cancels the import
+                - Then: The schedule screen is shown and 0 of the 5 courses are saved to their schedule
         - Exception Flow:
             - (AC-01.4)
-                - Given: The student is entering a course manually
-                - When: The student begins typing the building name (first 3 charactes)
-                - Then: within 2 seconds, autofill suggestions will be given for 1 to 5 possible building names they may be entering
+                - Given: A signed in student that has consented to their schedule being used and has a PDF that is 10MB or less with no readable courses
+                - When: The student selects the file
+                - Then: Within 10 seconds a message says no courses were found and offers manual entry, and 0 courses are saved
             - (AC-01.5)
+                - Given: The student is entering a course manually
+                - When: The student begins typing the building name (first 3 characters)
+                - Then: Within 2 seconds, autofill suggestions will be given for 1 to 5 possible building names they may be entering
+            - (AC-01.6)
                 - Given: The student is on the schedule screen
                 - When: The student selects a JPEG file
-                - Then: A error message shows asking for PDF only and 0 courses are saved
+                - Then: An error message shows asking for PDF only and 0 courses are saved
 
-- UC-02: Add and cancel a campus event (Expands US-03)
+- UC-02: Publish a club event (Expands US-03)
     - Primary actor: Head of the student club
     - Secondary actors: The interested students
     - Preconditions to verify: 
         - Head of club is signed in and has been verified as head of the club
-        - For cancelleation, A published event for the club exists and its start time is in the future
+        - For cancellation, a published event for the club exists and its start time is in the future
     - Main Success Flow:
         1. Head of club creates a new event
             - System response: Fields for name, time, location, and description
-        2. Head of club enters information
-            - System response: Highlights missed fields and will check that time is in the future. After it is saved, it sends a confirmation notification to head of   club and an event notification to interested students.
-        3. Head of club opens a created event
-            - System reponse: Shows event details, allows for edits, and how many students are interested
+        2. Head of club enters information and submits the event
+            - System response: Checks that every field is filled in and that the time is in the future, then publishes the event. It sends a confirmation notification to the head of the club and an event notification to interested students.
     - Alternate Flow:
-        1. Head of club edits event, cancels it, anc confirms cancellation
-            - System response: Marks event as cancelled and removes it from the event list and from schedules of interested student who added it. It will send a    cancellation confirmation to the head of the club and to thouse interested.
+        1. Head of club opens the published event, cancels it, and confirms cancellation
+            - System response: Shows the event details and how many students are interested, then marks the event as cancelled and removes it from the event list and from the schedules of interested students who added it. It will send a cancellation confirmation to the head of the club and to those interested.
     - Exception Flow:
         1. Head of the club tries to add an event with missing info
-            - System response: Higlights the missing items and doesn't add event until all info has been entered
+            - System response: Highlights the missing items and doesn't add event until all info has been entered
     - Postcondition: A created event has a name, time, location, and description and is available to all students. If cancelled, the event is no longer seen on calendars and notifies the head of student club and interested students.
     - Given/When/Then:
         - Main flow:
@@ -127,7 +129,7 @@
     - Estimable: Yes
     - Small: Somewhat
     - Testable: Yes
-    - Notes: Import, review, and manual entry can be split up later. Expanded in UC-01
+    - Notes: Import, review, and manual entry can be split up later. Editing or removing courses after the schedule is saved is left for a later story. Expanded in UC-01
 - US-02: 
     - Independent: Somewhat
     - Negotiable: Yes
@@ -151,7 +153,7 @@
     - Estimable: Somewhat
     - Small: Somewhat
     - Testable: Yes
-    - Notes: Broad and it will be split by feature once screens are known
+    - Notes: Broad and it will be split by feature once screens are known. Tested by checking that every schedule and event field is read out in order by VoiceOver (iOS) and TalkBack (Android)
 - US-05: 
     - Independent: Somewhat
     - Negotiable: Yes
@@ -159,7 +161,4 @@
     - Estimable: Somewhat
     - Small: Yes
     - Testable: Yes
-    - Notes: Needs schedule info from US-01 and an outside source for ratings, which alo makes it hard to estimate until we pick one
-
-
-    
+    - Notes: Needs schedule info from US-01 and campus building locations. Hard to estimate until we pick a map/routing data source. Replaced a professor ratings story, which was cut because it depended on an outside ratings source and its benefit (choosing courses) didn't fit students who have already registered
