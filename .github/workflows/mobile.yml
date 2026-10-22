@@ -1,5 +1,9 @@
 name: mobile-test
-on: [pull_request]
+on:
+  pull_request:
+    # only run once a PR touches mobile/ (no app code yet)
+    paths:
+      - 'mobile/**'
 
 jobs:
   test:

@@ -1,5 +1,9 @@
 name: server-test
-on: [pull_request]
+on:
+  pull_request:
+    # only run once a PR touches server/ (no app code yet)
+    paths:
+      - 'server/**'
 
 jobs:
   test:
