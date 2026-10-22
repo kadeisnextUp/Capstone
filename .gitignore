@@ -15,6 +15,8 @@ DESIGN.md
 # app store credentials
 credentials.json
 
-#
+#temporarily ignore workflow test until code is added to the repository
+*.github/workflows/
+
 
 
