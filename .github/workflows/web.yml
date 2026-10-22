@@ -1,5 +1,9 @@
 name: web-test
-on: [pull_request]
+on:
+  pull_request:
+    # only run once a PR touches web/ (no app code yet)
+    paths:
+      - 'web/**'
 
 jobs:
   test:
