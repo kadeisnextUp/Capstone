@@ -15,7 +15,7 @@
 
 **Basic output:** Walking times between classes, event suggestions that fit the student's free time, and event notifications.
 
-**Conventions:** Each diagram has its own legend. Red boxes are components we will build, the dashed box is an external system, black-header tables are the system's inputs and outputs, and figures are people. Each line on the block diagram is an interface, and its label matches a row in Part 4.
+**Conventions:** Each diagram has its own legend. Red boxes are components we will build, dashed boxes are external systems, black-header tables are the system's inputs and outputs, and figures are people. Each line on the block diagram is an interface, and its label matches a row in Part 4.
 
 ## 2. Block diagram (the D0 diagram)
 
@@ -30,12 +30,12 @@ Source: `D0_High_Level_Design.drawio`, page "D0 Block Diagram".
 | C1 | Information Check | Confirms all the given information is correct before the user gets route suggestions. | I1 | I2 | Kaden | US-01, US-04 |
 | C2 | Route Planner | Calculates and maps out route suggestions. | I2, I5 | I3 | Kaden | US-05 |
 | C3 | Event Check | Takes note of complementary events from onboarding answers, checking them against the semester schedule. | I3, I6 | I4, I6 | Kaden | US-02, US-04 |
-| C4 | Club Check | Confirms the club/organization exists at the university. | I7 | I8 | Laila | US-03 |
+| C4 | Club Check | Confirms the club/organization exists at the university. | I7, I12 | I8 | Laila | US-03 |
 | C5 | Club Categories | Takes note of the categories a club falls under, based on its description. | I8 | I9 | Laila | US-03 |
 | C6 | Event Classifier | Takes note of and classifies inputted events. | I6, I9 | I6, I10 | Laila | US-02, US-03 |
 | C7 | Interest Finder | Searches for users who would be interested, based on onboarding answers. | I10 | I11 | Laila | US-03 |
 
-E1 Open Map Data is an external system we depend on but do not build. It supplies campus buildings and paths to C2 through I5.
+E1 Open Map Data and E2 Campus Links are external systems we depend on but do not build. E1 supplies campus buildings and paths to C2 through I5. E2 is UC's published list of student organizations, and C4 checks clubs against it through I12 (D-04).
 
 ## 4. Interface specification table
 
@@ -58,6 +58,7 @@ E1 Open Map Data is an external system we depend on but do not build. It supplie
 | I9 | C5 → C6 | `clubId`: string<br>`categories`: list of strings<br>`event`: event record | `eventId`: string | JSON | Internal function call | Save fails: event is not listed, and the club head is asked to retry. **C6 handles.** |
 | I10 | C6 → C7 | `eventId`: string<br>`categories`: list of strings<br>`interests`: list of strings | `interestedUsers`: list of strings | JSON | Internal function call | No matches: no notification is sent. **C7 handles.** |
 | I11 | C7 → Club outputs | `event`: event record<br>`categories`: list of strings<br>`interestedUsers`: list of strings | `notification`: title and body strings | App screens, push message | Mobile app UI, OS push | Phone offline: the student sees the change on next open. **C7 handles.** |
+| I12 | E2 → C4 | `clubName`: string | `listed`: boolean | Web page | HTTPS, looked up by an admin (D-04) | Club not listed: request denied, shown "not authorized." Campus Links unavailable: request stays pending. **C4 handles.** |
 
 **Example payload (I7, posting an event):**
 
@@ -134,5 +135,5 @@ The system combines two patterns from the Week 5 lecture.
 | D-01 | Load the schedule through PDF upload with a student review step. | Manual entry in the event of file extraction errors. | The review step catches extraction errors before anything is saved. **Cost:** extraction accuracy depends on the PDF layout, so manual entry stays as the fallback. |
 | D-02 | Import open map data into C2 ahead of time. | Live third-party routing API; UC's own campus maps. | A live API would send students' class locations to a third party on every lookup and adds usage cost. A local dataset also meets the 2-second budget with no network dependency. **Cost:** open data may miss some campus paths, and the dataset needs refreshing by hand. |
 | D-03 | Connect the student and club flows inside one system (I6). | Two separate systems that share nothing. | Students cannot see club events, and clubs cannot reach interested students, unless the flows share data. **Cost:** both flows must agree on the event and interest formats. |
-| D-04 | Confirm clubs by manual admin approval, checked against UC's published student-organization list. | Automated check against a UC data feed; open posting with no verification. | UC-02 requires a verified club head, and open posting invites spam and impersonation. An automated check depends on a data feed we do not have. **Cost:** a person must review each request. |
+| D-04 | Confirm clubs by manual admin approval, checked against UC's published student-organization list (E2 Campus Links). | Automated check against a UC data feed; open posting with no verification. | UC-02 requires a verified club head, and open posting invites spam and impersonation. An automated check depends on a data feed we do not have. **Cost:** a person must review each request. |
 | D-05 | Run event matching on the server. | Matching on the phone. | AC-02.1 requires reaching students within 60 seconds even when the app is closed, so the server has to know who is interested. **Cost:** schedule data lives on our server, so consent and real deletion are required. |

@@ -34,6 +34,9 @@
         <mxCell id="E1" value='&lt;b style="font-size:14px"&gt;E1 Open Map Data&lt;/b&gt;&lt;br&gt;Campus buildings and paths' style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=6 4;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;fontColor=#000000;fontSize=13;spacing=4;fontFamily=Tahoma;" vertex="1" parent="1">
           <mxGeometry x="965" y="244" width="255" height="56" as="geometry" />
         </mxCell>
+        <mxCell id="E2" value='&lt;b style="font-size:14px"&gt;E2 Campus Links&lt;/b&gt;&lt;br&gt;Club/organization confirmation' style="rounded=0;whiteSpace=wrap;html=1;dashed=1;dashPattern=6 4;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;fontColor=#000000;fontSize=13;spacing=4;fontFamily=Tahoma;" vertex="1" parent="1">
+          <mxGeometry x="965" y="486" width="255" height="56" as="geometry" />
+        </mxCell>
         <mxCell id="outS" value="Outputs" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=28;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;fontColor=#FFFFFF;swimlaneFillColor=#FFFFFF;fontSize=14;fontFamily=Tahoma;" vertex="1" parent="1">
           <mxGeometry x="965" y="310" width="255" height="112" as="geometry" />
         </mxCell>
@@ -113,6 +116,9 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="I10" value="I10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=classic;endFill=1;fontColor=#000000;fontFamily=Tahoma;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="C6" target="C7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="I12" value="I12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=classic;endFill=1;fontColor=#000000;fontFamily=Tahoma;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="E2" target="C4">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="I11" value="I11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000000;strokeWidth=1.5;endArrow=classic;endFill=1;fontColor=#000000;fontFamily=Tahoma;fontSize=13;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.71875;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="C7" target="outC">
