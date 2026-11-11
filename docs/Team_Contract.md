@@ -10,6 +10,7 @@
 # Advisor 
 - Professor Yu Zhao
     - Email: zhao3y3@ucmail.uc.edu
+    - Screenshot of confirmation: ![Email from Professor Zhao stating that he will be the advisor for our project](image.png)
 # Project
 - Campus Companion
 # Project Description
@@ -21,6 +22,7 @@
 - Communications will be through text messaging and email. Will reach out prior to each meeting to confirm. Expected response time is 24-48 hours of sent communication
 # Meeting Cadence
 - Team meetings will typically occur weekly on Mondays at 12:30 and Wednesdays after the senior design course (around 6). Meetings with Professor Zhao will be at 2:30 on Wednesdays as needed.
+    - Advisor meeting screenshot confirmation: ![Email from Professor Zhao confirming our meeting](image-1.png)
 # Decision Process
 - New ideas and changes will be brought up between team members, where we will discuss the pros, cons, and how realistic it is. If a second opinion is needed, it will be brought to our advisor, Professor Zhao. Our Advisor will also serve as a tie-breaker. 
 # Conflict Plan: 
