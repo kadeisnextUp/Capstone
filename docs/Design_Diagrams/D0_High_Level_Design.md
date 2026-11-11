@@ -30,9 +30,9 @@ Source: `D0_High_Level_Design.drawio`, page "D0 Block Diagram".
 | C1 | Information Check | Confirms all the given information is correct before the user gets route suggestions. | I1 | I2 | Kaden | US-01, US-04 |
 | C2 | Route Planner | Calculates and maps out route suggestions. | I2, I5 | I3 | Kaden | US-05 |
 | C3 | Event Check | Takes note of complementary events from onboarding answers, checking them against the semester schedule. | I3, I6 | I4, I6 | Kaden | US-02, US-04 |
-| C4 | Club Check | Confirms the club/organization exists at the university. | I7, I12 | I8 | Laila | US-03 |
+| C4 | Club Check | Confirms the club/organization exists at the university. | I6, I7, I12 | I6, I8 | Laila | US-03 |
 | C5 | Club Categories | Takes note of the categories a club falls under, based on its description. | I8 | I9 | Laila | US-03 |
-| C6 | Event Classifier | Takes note of and classifies inputted events. | I6, I9 | I6, I10 | Laila | US-02, US-03 |
+| C6 | Event Classifier | Takes note of and classifies inputted events. | I9 | I10 | Laila | US-02, US-03 |
 | C7 | Interest Finder | Searches for users who would be interested, based on onboarding answers. | I10 | I11 | Laila | US-03 |
 
 E1 Open Map Data and E2 Campus Links are external systems we depend on but do not build. E1 supplies campus buildings and paths to C2 through I5. E2 is UC's published list of student organizations, and C4 checks clubs against it through I12 (D-04).
@@ -109,8 +109,8 @@ The system combines two patterns from the Week 5 lecture.
 | Criterion | Why this combination fits |
 | --- | --- |
 | Fit to the problem | Students and clubs need the same event data, so one shared server fits. Both flows move through fixed stages, which is what a pipeline describes. |
-| Team skills | We are two Computer Science majors who share the developer and architect roles (Team Contract). Both memebers have software development experience from Co-ops and personal projects they have worked on.|
-| Performance and timing | Our budgets are in seconds (Part 5), so the design needs no real-time techniques. Notifications go out after an event is saved, so posting can finish within 5 seconds while notices have 60. None of these budgets has been measured yet. |
+| Team skills | We are two Computer Science majors who share the developer and architect roles (Team Contract). Both members have software development experience from co-ops and personal projects we have worked on.|
+| Performance and timing | Our budgets are in seconds (Part 5), so the design needs no real-time techniques. Notifications go out after an event is saved, so posting can finish within 5 seconds while notices have 60 seconds. None of these budgets has been measured yet. |
 | Scalability | We start with one campus. Adding another means adding its map data and supporting its schedule format. Because the stages talk through defined interfaces, one could move to its own service later. |
 | Hardware constraints | We build no custom hardware. Client screens run on students' own phones and browsers, and the stages run on a hosted server, so phones do not do the heavy work. |
 
