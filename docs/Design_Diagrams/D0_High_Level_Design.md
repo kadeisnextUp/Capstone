@@ -3,7 +3,6 @@
 **Project:** Campus Companion
 **Team:** Kaden Sawyer, Laila Raines
 
-> **Draft.** The owners in Part 3, the decisions in Part 7, and the bracketed items in Part 6 need both team members' agreement. Delete this note before exporting to PDF.
 
 ## 1. Title, goal statement, and conventions
 
