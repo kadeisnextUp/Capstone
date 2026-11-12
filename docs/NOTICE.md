@@ -1,0 +1,23 @@
+## Attribution list
+- **Libraries (source URLs):** 
+    - Supabase: https://github.com/supabase/supabase
+    - Supabase Auth: https://github.com/supabase/auth
+        - supabase-py: https://github.com/supabase/supabase-py
+        - PostgreSQL: https://www.postgresql.org
+        - FastAPI: https://github.com/fastapi/fastapi
+        - Pydantic: https://github.com/pydantic/pydantic
+        - Uvicorn: https://github.com/Kludex/uvicorn
+        - pdfplumber: https://github.com/jsvine/pdfplumber
+        - OSMnx: https://github.com/gboeing/osmnx
+        - NetworkX: https://github.com/networkx/networkx
+        - React: https://github.com/facebook/react
+        - React Native: https://github.com/facebook/react-native
+        - Vite: https://github.com/vitejs/vite
+        - Python: https://www.python.org
+        - httpx: https://github.com/encode/httpx
+        - MapLibre React Native: https://github.com/maplibre/maplibre-react-native
+        - MapLibre GL JS: https://github.com/maplibre/maplibre-gl-js
+        - OpenFreeMap: https://openfreemap.org
+    - **Code adapted from tutorials or other repositories (source named):** None currently
+    - **Datasets (collection method, usage restrictions):** OpenStreetMap campus buildings and paths for UC's Uptown West campus, will be downloaded in January with OSMnx and stored in the building and walk_time tables. Usage of ODbL 1.0 require the attribution "© OpenStreetMap contributors" with a link to openstreetmap.org/copyright wherever the data or routes are shown, plus share-alike for a publicly used derivative database
+    - **Non-code assets (author, license):** None for now, might add to later
