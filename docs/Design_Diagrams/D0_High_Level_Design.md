@@ -3,7 +3,6 @@
 **Project:** Campus Companion
 **Team:** Kaden Sawyer, Laila Raines
 
-> **Draft.** The owners in Part 3, the decisions in Part 7, and the bracketed items in Part 6 need both team members' agreement. Delete this note before exporting to PDF.
 
 ## 1. Title, goal statement, and conventions
 
@@ -30,9 +29,9 @@ Source: `D0_High_Level_Design.drawio`, page "D0 Block Diagram".
 | C1 | Information Check | Confirms all the given information is correct before the user gets route suggestions. | I1 | I2 | Kaden | US-01, US-04 |
 | C2 | Route Planner | Calculates and maps out route suggestions. | I2, I5 | I3 | Kaden | US-05 |
 | C3 | Event Check | Takes note of complementary events from onboarding answers, checking them against the semester schedule. | I3, I6 | I4, I6 | Kaden | US-02, US-04 |
-| C4 | Club Check | Confirms the club/organization exists at the university. | I7, I12 | I8 | Laila | US-03 |
+| C4 | Club Check | Confirms the club/organization exists at the university. | I6, I7, I12 | I6, I8 | Laila | US-03 |
 | C5 | Club Categories | Takes note of the categories a club falls under, based on its description. | I8 | I9 | Laila | US-03 |
-| C6 | Event Classifier | Takes note of and classifies inputted events. | I6, I9 | I6, I10 | Laila | US-02, US-03 |
+| C6 | Event Classifier | Takes note of and classifies inputted events. | I9 | I10 | Laila | US-02, US-03 |
 | C7 | Interest Finder | Searches for users who would be interested, based on onboarding answers. | I10 | I11 | Laila | US-03 |
 
 E1 Open Map Data and E2 Campus Links are external systems we depend on but do not build. E1 supplies campus buildings and paths to C2 through I5. E2 is UC's published list of student organizations, and C4 checks clubs against it through I12 (D-04).
@@ -52,7 +51,7 @@ E1 Open Map Data and E2 Campus Links are external systems we depend on but do no
 | I3 | C2 → C3 | `courses`: list of course records<br>`routes`: list of route records | `received`: boolean | JSON | Internal function call | Unknown building: that route is left blank, and the rest continue. **C2 handles.** |
 | I4 | C3 → Student outputs | `routes`: list of route records<br>`events`: list of event records | None (shown on screen) | App screens | Mobile app UI | Results cannot load: offers a retry, and events are never shown unchecked. **C3 handles.** |
 | I5 | E1 → C2 | `campusArea`: pair of coordinates | `buildings`, `paths`: lists of coordinates | Map data file | HTTPS download, done ahead of time | Download fails: C2 keeps its last good copy. **C2 handles.** |
-| I6 | C3 ↔ C6 (between the two System boxes) | `interests`: list of strings | `events`: list of event records | JSON | Internal function call | Data unavailable: offers a retry, and events are never shown unchecked. **C3 handles.** |
+| I6 | C3 ↔ C4 (between the two System boxes) | `interests`: list of strings | `events`: list of event records | JSON | Internal function call | Data unavailable: offers a retry, and events are never shown unchecked. **C3 handles.** |
 | I7 | Club inputs → C4 | `clubName`, `description`: strings<br>`event`: event record | `status`: string | Form entries | HTTPS | Missing field: highlighted, nothing published, 0 notifications (AC-02.3). **C4 handles.** |
 | I8 | C4 → C5 | `clubId`, `description`: strings | `categories`: list of strings | JSON | Internal function call | Club not confirmed: stops here and shows "not authorized." **C4 handles.** |
 | I9 | C5 → C6 | `clubId`: string<br>`categories`: list of strings<br>`event`: event record | `eventId`: string | JSON | Internal function call | Save fails: event is not listed, and the club head is asked to retry. **C6 handles.** |
@@ -109,8 +108,8 @@ The system combines two patterns from the Week 5 lecture.
 | Criterion | Why this combination fits |
 | --- | --- |
 | Fit to the problem | Students and clubs need the same event data, so one shared server fits. Both flows move through fixed stages, which is what a pipeline describes. |
-| Team skills | We are two Computer Science majors who share the developer and architect roles (Team Contract). Both memebers have software development experience from Co-ops and personal projects they have worked on.|
-| Performance and timing | Our budgets are in seconds (Part 5), so the design needs no real-time techniques. Notifications go out after an event is saved, so posting can finish within 5 seconds while notices have 60. None of these budgets has been measured yet. |
+| Team skills | We are two Computer Science majors who share the developer and architect roles (Team Contract). Both members have software development experience from co-ops and personal projects we have worked on.|
+| Performance and timing | Our budgets are in seconds (Part 5), so the design needs no real-time techniques. Notifications go out after an event is saved, so posting can finish within 5 seconds while notices have 60 seconds. None of these budgets has been measured yet. |
 | Scalability | We start with one campus. Adding another means adding its map data and supporting its schedule format. Because the stages talk through defined interfaces, one could move to its own service later. |
 | Hardware constraints | We build no custom hardware. Client screens run on students' own phones and browsers, and the stages run on a hosted server, so phones do not do the heavy work. |
 
