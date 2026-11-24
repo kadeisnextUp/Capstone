@@ -1,0 +1,27 @@
+## Attribution list
+- **Libraries (source URLs):**
+    - Supabase, including its hosted PostgreSQL, Supabase Auth, supabase-py, and supabase-js: https://github.com/supabase
+    - FastAPI: https://github.com/fastapi/fastapi
+    - Pydantic: https://github.com/pydantic/pydantic
+    - Uvicorn: https://github.com/Kludex/uvicorn
+    - pdfplumber: https://github.com/jsvine/pdfplumber
+    - OSMnx: https://github.com/gboeing/osmnx
+    - NetworkX: https://github.com/networkx/networkx
+    - React: https://github.com/facebook/react
+    - React Native: https://github.com/facebook/react-native
+    - TypeScript: https://github.com/microsoft/TypeScript
+    - Python: https://www.python.org
+    - Expo: https://github.com/expo/expo
+    - httpx: https://github.com/encode/httpx
+    - MapLibre React Native: https://github.com/maplibre/maplibre-react-native
+    - OpenFreeMap: https://openfreemap.org
+    - GitHub Actions: https://github.com/actions
+- **Code adapted from tutorials or other repositories (source named):** None currently.
+- **Datasets (collection method, usage restrictions):**
+    - OpenStreetMap buildings and paths for Uptown West, downloaded in January with OSMnx into `building` and `walk_time`. ODbL-1.0 requires the credit "© OpenStreetMap contributors" and offering the derivative database or the method of making it.
+    - GetInvolvedUC's 23 category names, copied once into a migration under the site's terms.
+    - Volunteer schedule PDFs, collected with consent for testing only and deleted afterward.
+- **Non-code assets (author, license):** None in the repository. The apps load from OpenFreeMap:
+    - the OpenMapTiles style (BSD-3-Clause, CC-BY-4.0),
+    - the Noto Sans font (Noto Project Authors, OFL-1.1), and
+    - the Maki icons (Mapbox, CC0-1.0).

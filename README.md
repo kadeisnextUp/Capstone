@@ -82,6 +82,7 @@ Capstone deliverables live in [`/docs`](docs/):
 
 - [Constraints Essay](docs/Constraints_Essay.md)
 - [Professional Biography](docs/Professional_Biography.md)
+- [Ethics Statement](Ethics_Statement.md) (repository root), with its attribution list in [NOTICE.md](docs/NOTICE.md)
 
 ## Status
 
