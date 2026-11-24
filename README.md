@@ -27,10 +27,10 @@ preferences, work out what is feasible and worth recommending.
 
 | Name | Role |
 | --- | --- |
-| Kaden Sawyer | TBD |
-| Laila Raines | TBD |
+| Kaden Sawyer | Backend |
+| Laila Raines | Frontend |
 
-**Faculty advisor:** TBD
+**Faculty advisor:** Professor Yu Zhao - Department: CEAS- Computer Science
 
 ## Repository structure
 
@@ -88,6 +88,6 @@ Capstone deliverables live in [`/docs`](docs/):
 
 - [x] Project idea approved
 - [x] Repository set up with CI and branch protection
-- [ ] Faculty advisor confirmed
-- [ ] User stories and use cases
+- [x] Faculty advisor confirmed
+- [x] User stories and use cases
 - [ ] App folders scaffolded
